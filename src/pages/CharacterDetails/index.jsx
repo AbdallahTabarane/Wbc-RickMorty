@@ -1,16 +1,24 @@
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import useUserDetailStore from '../../store/userDetail';
-import { Box, Typography } from '@mui/material';
+import { Box, Card, Typography } from '@mui/material';
 import Status from '../../components/Status';
 
 const ChracterDetails = () => {
+  const navigate = useNavigate();
     const {id} = useParams();
     const { character, isLoading, error, fetchUserDetail } = useUserDetailStore();
     useEffect(()=>{
         fetchUserDetail(id);
     },[id]);
     console.log('character',character);
+      // Fonction pour extraire l'ID de l'URL
+  const getLocationIdFromUrl = (url) => {
+    const match = url.match(/\/(\d+)$/);
+    return match ? match[1] : null;
+  };
+
+  const locationId = getLocationIdFromUrl(character.location.url);
   return (
     <Box sx={{
       display:'flex',
@@ -42,6 +50,20 @@ const ChracterDetails = () => {
         }}>statut : <Status status={character.status} /> </Typography>
          <Typography variant='h5'>species : {character.species} </Typography>
          <Typography variant='h5'>gender : {character.gender} </Typography>
+         <Card
+         sx={{
+          padding:'20px',
+         }}>
+         <Typography variant='h5'>location name : {character.location.name} </Typography>
+         <Typography variant='h5'>location url : <Link style={{
+          textDecoration:'none',
+          textTransform:'uppercase',
+          color:'blue',
+          fontWeight:700,
+          fontSize:'18px'
+         }} to={`/location/${locationId}`}>Click here</Link> </Typography>
+         </Card>
+         
         </Box> </Box>
   )
 }
