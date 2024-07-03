@@ -2,6 +2,6 @@ export const links = [{
     name:'Home',
     to:'/',
   },{
-    name:'Favoris',
+    name:'Favorites',
     to:'/favoris',
   },]

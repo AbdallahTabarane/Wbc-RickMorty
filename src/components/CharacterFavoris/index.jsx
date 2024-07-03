@@ -15,7 +15,7 @@ const [updateFavUsers,setUpdateFavUsers] = useState();
             justifyContent:'center',
             textAlign:'center'
 
-          }}>Aucun element exist dans les favoris</Box> ) : ( <Container>
+          }}>Your favourite list is empty</Box> ) : ( <Container>
                 <ListCards  charecters={updateFavUsers}/>
             </Container>) }
             </>

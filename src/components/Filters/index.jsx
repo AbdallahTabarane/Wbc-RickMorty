@@ -1,17 +1,22 @@
-import React from 'react'
-import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { Box, Card, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 
 
 const Filters = ({handleFilter,search,status,gender,species}) => {
+  const [debouncedInputValue, setDebouncedInputValue] = useState("");
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedInputValue(search);
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [search, 500]);
   return (
-    <Box sx={{
+    <Card sx={{
         display:'flex',
         flexWrap:'wrap',
         gap:'20px',
         width:'100%',
         justifyContent:'space-between',
-        border:'2px solid black',
-        borderRadius:'15px',
         padding:'40px'
       }}>
         <Box sx={{
@@ -19,7 +24,7 @@ const Filters = ({handleFilter,search,status,gender,species}) => {
         }}>
       <TextField sx={{
           width:'100%'
-        }} id="outlined-basic" label="Rechercher" variant="outlined" onChange={handleFilter} value={search} name="search" />
+        }} id="outlined-basic" label="Search" variant="outlined" onChange={handleFilter} value={search} name="search" />
       </Box>
       <Box sx={{
             width:{ xs:'100%', md:'45%', lg:'20%' }
@@ -83,7 +88,7 @@ const Filters = ({handleFilter,search,status,gender,species}) => {
       </Select>
     </FormControl>
     </Box>
-      </Box>
+      </Card>
   )
 }
 

@@ -27,7 +27,7 @@ const ChracterDetails = () => {
       gap:'30px',
     }}>
        <Box sx={{
-        width:'45%'
+        width:{ xs:'100%' ,md:'45%' },
        }}>
         <img src={character.image} style={{
           width:'100%',
@@ -35,7 +35,7 @@ const ChracterDetails = () => {
         }} />
       </Box>
       <Box sx={{
-        width:'45%',
+        width:{ xs:'100%' ,md:'45%' },
         display:'flex',
         flexDirection:'column',
         flexWrap:'wrap',

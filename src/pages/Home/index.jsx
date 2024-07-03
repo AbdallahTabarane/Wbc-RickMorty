@@ -7,6 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import {Alert,Stack} from '@mui/material';
 import Filters from '../../components/Filters';
 
+
 const Home = () => {
     const [state, setState] = useState({ search:'', status:"",species:"",gender:""});
     const [page, setPage] = useState(1);
@@ -21,20 +22,7 @@ const Home = () => {
     useEffect(()=>{
     fetchUsers(page,state.search,state.status,state.species,state.gender);
     },[page,state.search,state.status,state.species,state.gender])
-    if(isLoading) {
-      return (
-        
-          <Box sx={{ display: 'flex',justifyContent:'center',alignItems:'center' }}>
-            <CircularProgress />
-          </Box>
-      );
-    } else if(error) {
-      <Stack sx={{ width: '100%' }} spacing={2}>
-      <Alert variant="outlined" severity="error">
-        This is an outlined error Alert.
-      </Alert>
-    </Stack>
-    }
+
   return (
     <>
     <Container sx={{
