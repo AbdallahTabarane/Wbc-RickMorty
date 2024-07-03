@@ -26,12 +26,10 @@ export default function CharCard({ character }) {
     if (favUsers.find((favUser) => favUser.name === character.name)) {
       favUsers = favUsers.filter(fav => fav.name !== character.name);
       setColor('gray');
-      console.log(`local "${character}" removed from favorites.`);
     } else {
       // if char exsite we add it into favUsers and seting his color
       favUsers.push(character);
       setColor('red');
-      // console.log(`Character "${character}" added to favorites.`);
     }
     localStorage.setItem('favorites', JSON.stringify(favUsers));
   };

@@ -16,7 +16,7 @@ const useUserStore = create(
           }
           const data = await response.json();
           
-          set({ charecters: data || [], isLoading: false });
+          set({ charecters: data || [], isLoading: false, error: null });
           
         } catch (error) {
           set({ error: error.message, isLoading: false });

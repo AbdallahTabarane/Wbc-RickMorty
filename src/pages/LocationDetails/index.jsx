@@ -17,9 +17,6 @@ const LocationDetails = () => {
         return match ? match[1] : null;
     };
 
-    console.log('idlocation', id);
-    console.log('location', location);
-
     // if (isLoading) return <p>Loading...</p>;
     // if (error) return <p>Error loading location details</p>;
     // if (!location) return <p>No location data</p>;

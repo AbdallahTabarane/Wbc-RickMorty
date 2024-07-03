@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Home from './pages/Home'
@@ -8,7 +7,6 @@ import CharacterFavoris from './components/CharacterFavoris'
 import LocationDetails from './pages/LocationDetails'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>

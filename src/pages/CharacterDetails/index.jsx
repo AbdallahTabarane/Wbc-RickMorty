@@ -1,24 +1,23 @@
 import React, { useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import useUserDetailStore from '../../store/userDetail';
-import { Box, Card, Typography } from '@mui/material';
+import { Alert, Box, Card, CircularProgress, Stack, Typography } from '@mui/material';
 import Status from '../../components/Status';
 
 const ChracterDetails = () => {
-  const navigate = useNavigate();
     const {id} = useParams();
     const { character, isLoading, error, fetchUserDetail } = useUserDetailStore();
     useEffect(()=>{
         fetchUserDetail(id);
     },[id]);
-    console.log('character',character);
-      // Fonction pour extraire l'ID de l'URL
+      // extract id from url
   const getLocationIdFromUrl = (url) => {
     const match = url.match(/\/(\d+)$/);
     return match ? match[1] : null;
   };
 
   const locationId = getLocationIdFromUrl(character.location.url);
+  
   return (
     <Box sx={{
       display:'flex',
@@ -28,7 +27,7 @@ const ChracterDetails = () => {
       gap:'30px',
     }}>
        <Box sx={{
-        width:'45%'
+        width:{ xs:'100%' ,md:'45%' },
        }}>
         <img src={character.image} style={{
           width:'100%',
@@ -36,7 +35,7 @@ const ChracterDetails = () => {
         }} />
       </Box>
       <Box sx={{
-        width:'45%',
+        width:{ xs:'100%' ,md:'45%' },
         display:'flex',
         flexDirection:'column',
         flexWrap:'wrap',
