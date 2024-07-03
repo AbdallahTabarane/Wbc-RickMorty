@@ -34,7 +34,7 @@ const Header= () => {
     <>
 <CssBaseline />
       <AppBar position="static" >
-        <Toolbar >
+        <Toolbar sx={{ background:'#191f26'}}>
             <Container sx={{
                 display:'flex',
                 alignItems:'center'

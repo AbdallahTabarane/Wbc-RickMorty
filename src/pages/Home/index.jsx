@@ -119,7 +119,7 @@ const Home = () => {
         </Box>
         <ListCards charecters={charecters?.results} />
         {charecters?.info && <CustomPagination pagination={charecters?.info} handleChange={handleChange} page={page}/>}
-
+        
     </Container>
     
 </>
