@@ -7,13 +7,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import LaunchIcon from '@mui/icons-material/Launch';
 import Status from '../Status';
 import { Box } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function CharCard({ character }) {
   const navigate = useNavigate();
+  // default color of the favorite icon
   const [color, setColor] = useState('gray');
   useEffect(() => {
-    // Vérifier si le personnage est déjà dans les favoris au montage
+    // Verify if the charachter already existe in favoris when load charachters 
     const favUsers = JSON.parse(localStorage.getItem('favorites')) || [];
     if (favUsers.find((favUser) => favUser.name === character.name)) {
       setColor('red');
@@ -27,12 +28,12 @@ export default function CharCard({ character }) {
       setColor('gray');
       console.log(`local "${character}" removed from favorites.`);
     } else {
+      // if char exsite we add it into favUsers and seting his color
       favUsers.push(character);
       setColor('red');
-      console.log(`Character "${character}" added to favorites.`);
+      // console.log(`Character "${character}" added to favorites.`);
     }
     localStorage.setItem('favorites', JSON.stringify(favUsers));
-    console.log('local',favUsers);
   };
 
   const handleClick = () => {
@@ -44,25 +45,26 @@ export default function CharCard({ character }) {
       width: 345,
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      boxShadow: 3,
     }}>
       <CardHeader
         action={
           <>
-          <IconButton
-            onClick={handleClick}
-            aria-label="add to favorites"
-            sx={{ color: color }}
-          >
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton
-          onClick={()=>navigate(`/character/${character.id}`)}>
-       
-            <LaunchIcon />
-        
-          </IconButton>
-          </> 
+            <IconButton
+              onClick={handleClick}
+              aria-label="add to favorites"
+              sx={{ color: color }}
+            >
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton
+              onClick={() => navigate(`/character/${character.id}`)}>
+
+              <LaunchIcon />
+
+            </IconButton>
+          </>
         }
         title={character.name}
         subheader={<Status status={character.status} />}

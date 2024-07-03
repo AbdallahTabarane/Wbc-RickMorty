@@ -10,6 +10,7 @@ const ListCards = ({charecters}) => {
     <Box sx={{
         display: 'flex',
         flexDirection:'row',
+        justifyContent:'center',
         flexWrap:'wrap',
         gap:'20px'
     }}>

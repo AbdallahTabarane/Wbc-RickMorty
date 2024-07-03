@@ -11,7 +11,6 @@ import { links } from '../../constants';
 
 const Header= () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-
     const handleDrawerToggle = () => {
       setDrawerOpen(!drawerOpen);
     };

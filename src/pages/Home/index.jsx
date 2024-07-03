@@ -15,7 +15,6 @@ const Home = () => {
     }
     const handleChange = (event, value) => {
       setPage(value);
-      
     };
     const { charecters, isLoading, error, fetchUsers } = useUserStore();
     useEffect(()=>{
@@ -24,7 +23,7 @@ const Home = () => {
     console.log('char ',charecters.info);
     if(isLoading) {
       return (
-       
+        
           <Box sx={{ display: 'flex',justifyContent:'center',alignItems:'center' }}>
             <CircularProgress />
           </Box>
@@ -49,14 +48,14 @@ const Home = () => {
           padding:'40px'
         }}>
           <Box sx={{
-            width:'20%'
+            width:{ xs:'100%', md:'45%', lg:'20%' }
           }}>
         <TextField sx={{
             width:'100%'
           }} id="outlined-basic" label="Rechercher" variant="outlined" onChange={handleFilter} value={state.search} name="search" />
         </Box>
         <Box sx={{
-            width:'20%'
+              width:{ xs:'100%', md:'45%', lg:'20%' }
           }}>
         <FormControl sx={{
           width:'100%'
@@ -77,7 +76,7 @@ const Home = () => {
       </FormControl>
       </Box>
       <Box sx={{
-            width:'20%'
+            width:{ xs:'100%', md:'45%', lg:'20%' }
           }}>
         <FormControl sx={{
           width:'100%'
@@ -97,7 +96,7 @@ const Home = () => {
       </FormControl>
       </Box>
       <Box sx={{
-            width:'20%'
+             width:{ xs:'100%', md:'45%', lg:'20%' }
           }}>
         <FormControl sx={{
           width:'100%'
