@@ -1,23 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import useUserDetailStore from '../../store/userDetail';
-import { Alert, Box, Card, CircularProgress, Stack, Typography } from '@mui/material';
+import { Box, Card } from '@mui/material';
 import Status from '../../components/Status';
+import { characterServices } from '../../services';
 
 const ChracterDetails = () => {
     const {id} = useParams();
-    const { character, isLoading, error, fetchUserDetail } = useUserDetailStore();
-    useEffect(()=>{
-        fetchUserDetail(id);
-    },[id]);
+    const [data, setData] = useState({ character: {}, isLoading: true, error: null });
+
+    useEffect(() => {
+      const fetchDataDetail = async () => {
+          const result = await characterServices.fetchUserDetail(id);
+          setData(result);
+      };
+      fetchDataDetail();
+  }, [id]);
+    
       // extract id from url
   const getLocationIdFromUrl = (url) => {
     const match = url.match(/\/(\d+)$/);
     return match ? match[1] : null;
   };
 
-  const locationId = getLocationIdFromUrl(character.location.url);
-  
+  const locationId = getLocationIdFromUrl(data.location.url);
+  console.log('detail',data)
   return (
     <Box sx={{
       display:'flex',
@@ -29,7 +35,7 @@ const ChracterDetails = () => {
        <Box sx={{
         width:{ xs:'100%' ,md:'45%' },
        }}>
-        <img src={character.image} style={{
+        <img src={data.image} style={{
           width:'100%',
           height:'100%'
         }} />
@@ -42,18 +48,18 @@ const ChracterDetails = () => {
         justifyContent:'center',
         gap:'10px'
        }}>
-        <Typography variant='h5'>name : {character.name} </Typography>
+        <Typography variant='h5'>name : {data.name} </Typography>
         <Typography variant='h5' sx={{
           display:'flex',
           gap : '10px'
-        }}>statut : <Status status={character.status} /> </Typography>
-         <Typography variant='h5'>species : {character.species} </Typography>
-         <Typography variant='h5'>gender : {character.gender} </Typography>
+        }}>statut : <Status status={data.status} /> </Typography>
+         <Typography variant='h5'>species : {data.species} </Typography>
+         <Typography variant='h5'>gender : {data.gender} </Typography>
          <Card
          sx={{
           padding:'20px',
          }}>
-         <Typography variant='h5'>location name : {character.location.name} </Typography>
+         <Typography variant='h5'>location name : {data.location.name} </Typography>
          <Typography variant='h5'>location url : <Link style={{
           textDecoration:'none',
           textTransform:'uppercase',

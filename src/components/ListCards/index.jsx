@@ -3,7 +3,7 @@ import React from 'react'
 import CharCard from '../Card'
 
 
-const ListCards = ({charecters}) => {
+const ListCards = ({data}) => {
     
 
   return (
@@ -14,7 +14,7 @@ const ListCards = ({charecters}) => {
         flexWrap:'wrap',
         gap:'20px'
     }}>
-        {Array.isArray(charecters) && charecters?.map((character) => (
+        {Array.isArray(data) && data?.map((character) => (
             <CharCard key={character.id} character={character} />
         ))}
         </Box>
